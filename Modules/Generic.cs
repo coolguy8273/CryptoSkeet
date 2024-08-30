@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
-using CryptoEat.Modules.HelpersN;
 using CryptoEat.Modules.Logs;
 using CryptoEat.Modules.Models;
 using CryptoEat.Modules.Network;
@@ -248,30 +247,6 @@ internal static partial class Generic
         }
     }
 
-    internal static async Task CheckAntipublicAccess()
-    {
-        if (string.IsNullOrEmpty(Settings.AntiPublicKey))
-        {
-            Settings.AntipublicWorking = false;
-            return;
-        }
-
-        Helpers.SetTitle("Checking Antipublic Plus access...");
-
-        try
-        {
-            using var api = new MyrzApi(Settings.AntiPublicKey);
-            var result = await api.CheckAccess();
-            Settings.AntipublicWorking = result.plus;
-        }
-        catch (Exception e)
-        {
-            WriteError(e);
-            Settings.AntipublicWorking = false;
-        }
-
-        Helpers.SetTitle();
-    }
 
     internal static void WriteError(Exception e)
     {
