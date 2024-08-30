@@ -15,7 +15,7 @@ Generic.GreetUser();
 LogStreams.Initialize();
 Generic.LoadSettings();
 LogStreams.InitializeAfterSettings();
-await Generic.CheckAntipublicAccess();
+
 
 Console.WriteLine();
 Generic.RequestPath();
