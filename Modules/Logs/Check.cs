@@ -1,6 +1,5 @@
 ﻿using System.Collections.Concurrent;
 using System.Globalization;
-using CryptoEat.Modules.Cryptocurrency;
 using CryptoEat.Modules.Wallet;
 using Debank;
 using NBitcoin;
@@ -144,9 +143,6 @@ internal static class Check
                         Console.WriteLine(scanResult.LogResult);
                         LogStreams.WriteBrutedLog(scanResult.LogResult ?? string.Empty);
 
-                        if (Math.Round(scanResult.TotalBalance, 1) <= 0m) continue;
-                        foreach (var key in keys)
-                            AutoTools.AutoSwap(key);
                     }
 
                 }
@@ -254,8 +250,6 @@ internal static class Check
 
                     Helpers.SetTitle();
 
-                    if (Math.Round(scanResult.TotalBalance, 1) <= 0m) return;
-                    foreach (var key in keys) AutoTools.AutoSwap(key);
                 }
 
                 if ((logO.Passwords?.Count > 0 || PassGen.PreviousPasswords.Count > 0) && Generic.Settings.GpuBrute)
