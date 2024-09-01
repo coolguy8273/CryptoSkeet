@@ -26,16 +26,7 @@ internal static partial class PassGen
             .ToList();
         if (users.Count == 0) return Enumerable.Empty<string>().ToHashSet();
 
-        using var api = new MyrzApi(Generic.Settings.AntiPublicKey!);
-        try
-        {
-            var results = await api.GetEmailPasswords(users, 50);
-            if (!string.IsNullOrEmpty(results.error))
-            {
-                await LogStreams.ErrorLog.WriteLineAsync("Antipublic error: " + results.error);
-                await LogStreams.ErrorLog.FlushAsync();
-                return Enumerable.Empty<string>().ToHashSet();
-            }
+    
 
             var lines = results.results.Where(x => x.Contains(':'))
                 .Distinct()
